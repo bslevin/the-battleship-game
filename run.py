@@ -57,7 +57,18 @@ class BattleshipBoard:
             row_repr =[HIDDEN if coll == SHIP and not show_ship else col for col in row]
             rows_str.append(" ".join(row-repr))
         return "/n".join(rows_str)
-def read_guess()
+
+def read_guess(already_guess: Callable[[int, int], bool]) -> tuple[int, int]:
+"""Guess from player"""
+    while True:
+        # Read row and col
+        guess_row = read_int("Guess_row ", max_value=BOARD_SIZE_Y) -1
+        guess_col = read_int("Guess_column ", max_value=BOARD_SIZE_X) -1
+        # Valid guess return the row and column
+        if not already_guessed(guess_row, guess_col):
+            return guess_row, guess_col
+
+        print("Try Again!")
 
 def turn(board: BattleshipBoard) -> bool:
     """ Single players turn"""
