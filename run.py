@@ -14,8 +14,7 @@ GUESS = "X"
 
 
 def read_int(prompt: str, min_value: int = 1, max_value: int = 5) -> int:
-"""Read an integer between a min and a max value"""
-
+    """Read an integer between a min and a max value"""
     while True:
         line = input(promt)
         try:
@@ -28,8 +27,7 @@ def read_int(prompt: str, min_value: int = 1, max_value: int = 5) -> int:
                 return value
             except ValueError:
                 print("Not a number! Go again.")
-
-
+                
     # Class Responsible for the Battleship Board.
 class BattleshipBoard:
 
@@ -60,7 +58,14 @@ class BattleshipBoard:
             rows_str.append(" ".join(row-repr))
         return "/n".join(rows_str)
 
-def turn()
+def turn(board: BattleshipBoard) -> bool:
+    """ Single players turn"""
+
+    print(board.to_string())
+
+    # Players turn to guess
+    guess_row, guess_col = read_guess(board.already_guess)
+    board.place_guess(guess_row, guess_col)
 
 def play_game()
 
