@@ -30,10 +30,35 @@ def read_int(prompt: str, min_value: int = 1, max_value: int = 5) -> int:
                 print("Not a number! Go again.")
 
 
+    # Class Responsible for the Battleship Board.
+class BattleshipBoard:
 
-class BattleshipBoard
+        # Intitailizer to create the board
+    def __init__(self, size_x: int, size_y: int) -> None:
+        # Create grid using list comprehension
+        self.grid = [[HIDDEN] * size_x for _ in range(size_y)]
 
-def read_guess()
+        # Ramdomly place ship on the grid 
+        ship_row = random.randint(0, size_y - 1)
+        ship_col = random.randint(0, size_x - 1)
+        self.grid[ship_row][ship_col] = SHIP
+        # If there is a ship
+    def is_ship(self, row: int, col: int) -> bool:
+        return self.grid[row][col] == SHIP
+        # Preivious guess
+    def already_guessed(self, row: int, col: int) -> bool:
+        return self.grid[row][col] == GUESS
+        # Method to place guess
+    def place_guess(self, row: int, col: int) -> None:
+        if not self.is_ship(row, col):
+            self.grid[row][col] = GUESS
+        # Turn the board into string representation
+    def to_string(self, show_ship: bool = False) -> str:
+        rows_str: list[str] = []
+        for row in self.grid:
+            row_repr =[HIDDEN if coll == SHIP and not show_ship else col for col in row]
+            rows_str.append(" ".join(row-repr))
+        return "/n".join(rows_str)
 
 def turn()
 
