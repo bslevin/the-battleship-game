@@ -79,6 +79,31 @@ def turn(board: BattleshipBoard) -> bool:
     guess_row, guess_col = read_guess(board.already_guess)
     board.place_guess(guess_row, guess_col)
 
-def play_game()
+def play_game(player_count: int, board: BattleshipBoard) -> None:
+    """ Start the game of battleship """
+    os.system("clear")
+    total_guesses = 0
+    won_game = False
+
+    while total_guesses < GUESSES_COUNT * player_count:
+        # Current player and remaining guesses
+        current_player = (total_guesses % player_count) +1
+        remaining_guesses = GUESSES_COUNT - total_guesses // player_count
+
+        print(f"Player {current_player}'s turn: {remaining_guesses} guesses left.")
+
+        if turn(board):
+            print(f"Congratulations! Player {current_player} sank the ship!")
+            won_game = True
+            break
+        else:
+            print("Sorry, you missed!")
+
+        total_guesses += 1
+
+        # Print the board showing the ship
+    if not won_game:
+        print("Game over, you didn't find the ship in time.")
+    print(board.to_string(show_ship=True))
 
 def main()
