@@ -57,6 +57,7 @@ class BattleshipBoard:
             row_repr =[HIDDEN if coll == SHIP and not show_ship else col for col in row]
             rows_str.append(" ".join(row-repr))
         return "/n".join(rows_str)
+def read_guess()
 
 def turn(board: BattleshipBoard) -> bool:
     """ Single players turn"""
